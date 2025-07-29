@@ -1,0 +1,186 @@
+
+import {Alert, Button, Col, Container, Form, Row} from "react-bootstrap";
+import { useNavigate } from 'react-router-dom';
+import {useSelector} from "react-redux";
+import type {RootState} from "../../app/store.ts";
+import {jwtDecode} from "jwt-decode";
+
+type TokenPayload = {
+    login: string;
+    role: string;
+};
+
+const EditFarmer = () => {
+    const token = useSelector((state: RootState) => state.auth.token);
+    //const loginFromToken = token ? (jwtDecode(token) as TokenPayload).login : null;
+    const roleFromToken = token ? (jwtDecode(token) as TokenPayload).role : null;
+    const navigate = useNavigate();
+
+    const updateFarmer = () => {
+        navigate('/updateFarmer');
+    }
+
+    const removeFarmer = () => {
+        navigate('/removeFarmer');
+    }
+
+    const updatePassword = () => {
+        navigate('/updateFarmerPassword');
+    };
+
+    const addNewSurprizeBack = () => {
+        navigate('/addSurprizeBack')
+    };
+
+    const removeSurprizeBack = () => {
+        navigate('/removeSurprizeBack')
+    };
+
+    const updateSurprizeBack = () => {
+        navigate('/updateSurprizeBack')
+    };
+
+    const InfOrdersSB = () => {
+        navigate('/InfOrdersSB')
+    };
+
+    const InfFarmerByLogin = () => {
+        navigate('/infFarmerByLogin')
+    };
+
+    const InfClientByLogin = () => {
+        navigate('/InfClientByLogin')
+    };
+
+    const InfSurprizeBacksByFarmer = () => {
+        navigate('/InfSurprizeBacksByFarmer')
+    };
+
+    const infAllFarmers = () => {
+        navigate('/infAllFarmers')
+    };
+
+    const InfAllProducts = () => {
+        navigate('/InfAllProducts')
+    };
+
+    const InfFarmersByProduct = () => {
+        navigate('/InfFarmersByProduct')
+
+    };
+
+    const infSurprizeBackByNameSurprizeBack = () => {
+        navigate('/infSBByNameSB')
+    };
+
+    if (roleFromToken !== 'farmer') {
+        return (
+            <Container className="mt-4" style={{ maxWidth: '800px' }}>
+                <Alert variant="danger">You are not registered as farmer. Operation is forbidden</Alert>
+            </Container>
+        );
+    }
+    return (
+
+        <Container fluid className="mt-5" style={{ maxWidth: '100%' }}>
+
+    <h2>Choose an action</h2>
+
+    <Form.Group as={Row} className="mb-3">
+    <Col md={6}>
+    <Button variant="success" size="lg" style={{ width: '100%', height: '80px'}} onClick={updateFarmer}>Edit your details</Button>
+    </Col>
+
+    <Col md={6}>
+    <Button variant="success" size="lg" style={{ width: '100%', height: '80px' }} onClick={removeFarmer}>Close your account</Button>
+    </Col>
+    </Form.Group>
+
+    <Form.Group as={Row} className="mb-3">
+    <Col md={6}>
+    <Button variant="success" size="lg" style={{ width: '100%', height: '80px'}} onClick={updatePassword}>Update your password</Button>
+    </Col>
+        <Col md={6}>
+            <Button variant="success" size="lg" style={{ width: '100%', height: '80px'}} onClick={addNewSurprizeBack}>Make new surprizeBack</Button>
+        </Col>
+    </Form.Group>
+            <Form.Group as={Row} className="mb-3">
+                <Col md={6}>
+                    <Button variant="success" size="lg" style={{ width: '100%', height: '80px'}} onClick={removeSurprizeBack}>Delete surprizeback</Button>
+                </Col>
+                <Col md={6}>
+                    <Button variant="success" size="lg" style={{ width: '100%', height: '80px'}} onClick={updateSurprizeBack}>Update surprizeBack</Button>
+                </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="mb-3">
+                <Col md={6}>
+                    <Button variant="success" size="lg" style={{ width: '100%', height: '80px'}} onClick={InfOrdersSB}>Information of ordered surprizebacks</Button>
+                </Col>
+                <Col md={6}>
+                    <Button variant="success" size="lg" style={{ width: '100%', height: '80px'}} onClick={infSurprizeBackByNameSurprizeBack}>
+                        Information of surprizeBack By Name
+                    </Button>
+                </Col>
+
+            </Form.Group>
+            <Form.Group as={Row} className="mb-3">
+                <Col md={6}>
+                    <Button variant="success" size="lg" style={{ width: '100%', height: '80px'}} onClick={InfSurprizeBacksByFarmer}>
+                        Information of surprizebacks by farmer
+                    </Button>
+                </Col>
+                <Col md={6}>
+                    <Button variant="success" size="lg" style={{ width: '100%', height: '80px'}} onClick={infAllFarmers}>Information of all farmers</Button>
+                </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="mb-3">
+                <Col md={6}>
+                    <Button variant="success" size="lg" style={{ width: '100%', height: '80px'}} onClick={InfFarmersByProduct}>Information of farmers by product</Button>
+                </Col>
+                <Col md={6}>
+                    <Button variant="success" size="lg" style={{ width: '100%', height: '80px'}} onClick={InfFarmerByLogin}>Information of farmer by login</Button>
+                </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="mb-3">
+            <Col md={6}>
+                <Button variant="success" size="lg" style={{ width: '100%', height: '80px'}} onClick={InfAllProducts}>
+                    Information of all products
+                </Button>
+            </Col>
+                <Col md={6}>
+                    <Button variant="success" size="lg" style={{ width: '100%', height: '80px'}} onClick={InfClientByLogin}>
+                        Information of client by his login
+                    </Button>
+                </Col>
+            </Form.Group>
+
+    </Container>
+
+);
+};
+
+export default EditFarmer;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
