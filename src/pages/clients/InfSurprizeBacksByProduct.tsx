@@ -26,13 +26,14 @@ const InfSurprizeBacksByProduct = () => {
         const [infSurprizeBacks, setinfSurprizeBacks] = useState<SurprizeBackTo[] | null>(null);
         const [product, setProduct] = useState('');
         const roleFromToken = token ? (jwtDecode(token) as TokenPayload).role : null;
+        const baseURL = import.meta.env.VITE_API_URL;
         const GetSurprizeBacksByProduct = async () => {
             try {
                 setError(null);
                 setSuccess(null);
                 setLoading(true);
                 setinfSurprizeBacks(null);
-                const response = await fetch(`http://localhost:8080/apifarm/InfSurprizeBacksByProduct/${product}`, {
+                const response = await fetch(`${baseURL}/apifarm/InfSurprizeBacksByProduct/${product}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

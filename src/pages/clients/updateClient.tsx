@@ -20,7 +20,7 @@ const UpdateClient = () => {
     const [success, setSuccess] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
-
+    const baseURL = import.meta.env.VITE_API_URL;
     const loginFromToken = token ? (jwtDecode(token) as TokenPayload).login : null;
     const roleFromToken = token ? (jwtDecode(token) as TokenPayload).role : null;
     //const roleFromToken = token ? (jwtDecode(token) as TokenPayload).role.toLowerCase() : null;
@@ -33,7 +33,7 @@ const UpdateClient = () => {
                 if (roleFromToken !== 'client')
                     throw new Error('You are not registered as client. Operation is forbidden');
 
-                const response = await fetch(`http://localhost:8080/apifarm/infClientByLogin/${loginFromToken}`, {
+                const response = await fetch(`${baseURL}/apifarm/infClientByLogin/${loginFromToken}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     },
@@ -69,7 +69,7 @@ const UpdateClient = () => {
             setError(null);
             setSuccess(null);
 
-            const response = await fetch('http://localhost:8080/apifarm/updateClient', {
+            const response = await fetch(`${baseURL}/apifarm/updateClient`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

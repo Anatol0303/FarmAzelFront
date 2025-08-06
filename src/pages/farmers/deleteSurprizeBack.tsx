@@ -15,6 +15,7 @@ const RemoveSurprizeBack = () => {
     const [success, setSuccess] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     const roleFromToken = token ? (jwtDecode(token) as TokenPayload).role : null;
+    const baseURL = import.meta.env.VITE_API_URL;
     const handleDeleteSurprizeBack = async () => {
         try {
             setError(null);
@@ -23,7 +24,7 @@ const RemoveSurprizeBack = () => {
             {
                 throw new Error('Error! Name of surprizeback is required');
             }
-            const response = await fetch(`http://localhost:8080/apifarm/removeSurprizeBack/${nameSB}`, {
+            const response = await fetch(`${baseURL}/apifarm/removeSurprizeBack/${nameSB}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

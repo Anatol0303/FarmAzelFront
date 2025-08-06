@@ -16,7 +16,7 @@ const RemoveOrderSurprizeBack = () => {
     const [success, setSuccess] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
-
+    const baseURL = import.meta.env.VITE_API_URL;
     const loginFromToken = token ? (jwtDecode(token) as TokenPayload).login : null;
     const roleFromToken = token ? (jwtDecode(token) as TokenPayload).role : null;
     const removeOrderSB = async () => {
@@ -24,7 +24,7 @@ const RemoveOrderSurprizeBack = () => {
             setError(null);
             setSuccess(null);
             setLoading(true);
-            const response = await fetch(`http://localhost:8080/apifarm/removeOrderSB/${nameSB}/${loginFarmer}`, {
+            const response = await fetch(`${baseURL}/apifarm/removeOrderSB/${nameSB}/${loginFarmer}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

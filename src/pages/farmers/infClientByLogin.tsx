@@ -28,13 +28,14 @@ const InfClientByLogin = () => {
     const [infClient, setinfClient] = useState<ClientDTo | null>(null);
     const [loginClient, setloginClient] = useState('');
     const roleFromToken = token ? (jwtDecode(token) as TokenPayload).role : null;
+    const baseURL = import.meta.env.VITE_API_URL;
     const GetClientByLogin = async () => {
         try {
             setError(null);
             setSuccess(null);
             setLoading(true);
 
-            const response = await fetch(`http://localhost:8080/apifarm/infClientByLogin/${loginClient}`, {
+            const response = await fetch(`${baseURL}/apifarm/infClientByLogin/${loginClient}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

@@ -18,13 +18,14 @@ const InfSurprizeBacksByFarmer = () => {
         const [loading, setLoading] = useState<boolean>(false);
         const [infSurprizeBacks, setinfSurprizeBacks] = useState<SurprizeBackTo[] | null>(null);
         const [loginFarmer, setLoginFarmer] = useState('');
+        const baseURL = import.meta.env.VITE_API_URL;
         const GetSurprizeBacksByFarmer = async () => {
             try {
                 setError(null);
                 setSuccess(null);
                 setLoading(true);
                 setinfSurprizeBacks(null);
-                const response = await fetch(`http://localhost:8080/apifarm/InfSurprizeBacksByFarmer/${loginFarmer}`, {
+                const response = await fetch(`${baseURL}/apifarm/InfSurprizeBacksByFarmer/${loginFarmer}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

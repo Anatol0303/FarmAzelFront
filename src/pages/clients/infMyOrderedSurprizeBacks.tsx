@@ -25,6 +25,7 @@ const InfMyOrderedSurprizeBacks = () => {
         const [infMyOrderedSurprizeBacks, setinfMyOrderedSurprizeBacks] = useState<SurprizeBackTo[] | null>(null);
         const loginFromToken = token ? (jwtDecode(token) as TokenPayload).login : null;
         const roleFromToken = token ? (jwtDecode(token) as TokenPayload).role : null;
+        const baseURL = import.meta.env.VITE_API_URL;
         //const [product, setProduct] = useState('');
         const GetMyOrderedSurprizeBacks = async () => {
             try {
@@ -32,7 +33,7 @@ const InfMyOrderedSurprizeBacks = () => {
                 setSuccess(null);
                 setLoading(true);
                 setinfMyOrderedSurprizeBacks(null);
-                const response = await fetch(`http://localhost:8080/apifarm/InfMyOrderedSurprizeBacks`, {
+                const response = await fetch(`${baseURL}/apifarm/InfMyOrderedSurprizeBacks`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

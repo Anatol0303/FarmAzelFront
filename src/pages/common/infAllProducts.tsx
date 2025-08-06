@@ -10,7 +10,7 @@ const InfAllProducts = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [infAllProducts, setinfAllProducts] = useState<string[] | null>(null);
     const [hasSearched, setHasSearched] = useState(false);
-
+    const baseURL = import.meta.env.VITE_API_URL;
     const GetAllProducts = async () => {
         try {
             setError(null);
@@ -18,7 +18,7 @@ const InfAllProducts = () => {
             setLoading(true);
             setinfAllProducts(null);
             setHasSearched(false);
-            const response = await fetch(`http://localhost:8080/apifarm/InfAllProducts`, {
+            const response = await fetch(`${baseURL}/apifarm/InfAllProducts`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

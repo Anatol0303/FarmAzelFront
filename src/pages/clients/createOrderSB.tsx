@@ -18,12 +18,13 @@ const CreateOrderSurprizeBack = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const loginFromToken = token ? (jwtDecode(token) as TokenPayload).login : null;
     const roleFromToken = token ? (jwtDecode(token) as TokenPayload).role : null;
+    const baseURL = import.meta.env.VITE_API_URL;
     const createOrderSB = async () => {
         try {
             setError(null);
             setSuccess(null);
             setLoading(true);
-            const response = await fetch(`http://localhost:8080/apifarm/createOrderSB/${nameSB}/${loginFarmer}`, {
+            const response = await fetch(`${baseURL}/apifarm/createOrderSB/${nameSB}/${loginFarmer}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

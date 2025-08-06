@@ -12,7 +12,7 @@ const InfFarmersByProduct = () => {
         const [product, setProduct] = useState<string>('');
         const [farmersByProduct, setFarmersByProduct] = useState<string[] | null>(null)
         const [hasSearched, setHasSearched] = useState(false);
-
+        const baseURL = import.meta.env.VITE_API_URL;
         const GetFarmersByProduct = async () => {
             try {
                 setError(null);
@@ -20,7 +20,7 @@ const InfFarmersByProduct = () => {
                 setLoading(true);
                 setFarmersByProduct(null);
                 setHasSearched(false);
-                const response = await fetch(`http://localhost:8080/apifarm/InfFarmersByProduct/${product}`, {
+                const response = await fetch(`${baseURL}/apifarm/InfFarmersByProduct/${product}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

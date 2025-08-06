@@ -19,6 +19,7 @@ const UpdateSurprizeBack = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const loginFromToken = token ? (jwtDecode(token) as TokenPayload).login : null;
     const roleFromToken = token ? (jwtDecode(token) as TokenPayload).role : null;
+    const baseURL = import.meta.env.VITE_API_URL;
     const fetchSBData = async () => {
         try {
             setLoading(true);
@@ -28,7 +29,7 @@ const UpdateSurprizeBack = () => {
             {
                 throw new Error('Error! Name of surprizeback is required');
             }
-            const response = await fetch(`http://localhost:8080/apifarm/infSBByNameSB/${nameSB}`, {
+            const response = await fetch(`${baseURL}/apifarm/infSBByNameSB/${nameSB}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -60,7 +61,7 @@ const UpdateSurprizeBack = () => {
             setError(null);
             setSuccess(null);
 
-            const response = await fetch(`http://localhost:8080/apifarm/updateSurprizeBack/${nameSB}`, {
+            const response = await fetch(`${baseURL}/apifarm/updateSurprizeBack/${nameSB}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

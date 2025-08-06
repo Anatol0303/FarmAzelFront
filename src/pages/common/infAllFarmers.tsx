@@ -21,7 +21,7 @@ const InfAllFarmers = () => {
         const [loading, setLoading] = useState<boolean>(false);
         const [infAllFarmers, setInfAllFarmers] = useState<FarmerDTo[] | null>(null);
         const [hasSearched, setHasSearched] = useState(false);
-
+        const baseURL = import.meta.env.VITE_API_URL;
         const GetAllFarmers = async () => {
             try {
                 setError(null);
@@ -30,7 +30,7 @@ const InfAllFarmers = () => {
                 setInfAllFarmers(null);
                 setHasSearched(false);
 
-                const response = await fetch(`http://localhost:8080/apifarm/infAllFarmers`, {
+                const response = await fetch(`${baseURL}/apifarm/infAllFarmers`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

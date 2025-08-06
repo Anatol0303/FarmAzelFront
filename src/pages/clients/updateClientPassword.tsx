@@ -15,7 +15,7 @@ const UpdateClientPassword = () => {
 
     const [success, setSuccess] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
-
+    const baseURL = import.meta.env.VITE_API_URL;
     const loginFromToken = token ? (jwtDecode(token) as TokenPayload).login : null;
     const roleFromToken = token ? (jwtDecode(token) as TokenPayload).role : null;
 
@@ -25,7 +25,7 @@ const UpdateClientPassword = () => {
             setSuccess(null);
             console.log(newPassword);
             const password = newPassword;
-            const response = await fetch('http://localhost:8080/apifarm/updateClientPassword', {
+            const response = await fetch(`${baseURL}/apifarm/updateClientPassword`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

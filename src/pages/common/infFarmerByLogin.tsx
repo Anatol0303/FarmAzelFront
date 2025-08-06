@@ -21,13 +21,14 @@ const InfFarmerByLogin = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [infFarmer, setinfFarmer] = useState<FarmerDTo | null>(null);
     const [loginFarmer, setloginFarmer] = useState('');
+    const baseURL = import.meta.env.VITE_API_URL;
     const GetFarmerByLogin = async () => {
         try {
             setError(null);
             setSuccess(null);
             setLoading(true);
 
-            const response = await fetch(`http://localhost:8080/apifarm/infFarmerByLogin/${loginFarmer}`, {
+            const response = await fetch(`${baseURL}/apifarm/infFarmerByLogin/${loginFarmer}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

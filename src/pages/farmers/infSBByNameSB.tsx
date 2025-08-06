@@ -26,12 +26,13 @@ const InfSBByNameSB = () => {
     const [SBByNameSB, setSBByNameSB] = useState<SurprizeBackTo | null>(null);
     const [nameSB, setnameSB] = useState('');
     const roleFromToken = token ? (jwtDecode(token) as TokenPayload).role : null;
+    const baseURL = import.meta.env.VITE_API_URL;
     const GetSurprizeBackByName = async () => {
         try {
             setError(null);
             setSuccess(null);
             setLoading(true);
-            const response = await fetch(`http://localhost:8080/apifarm/infSBByNameSB/${nameSB}`, {
+            const response = await fetch(`${baseURL}/apifarm/infSBByNameSB/${nameSB}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

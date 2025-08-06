@@ -23,9 +23,7 @@ const DeleteFarmer = () => {
     const [success, setSuccess] = useState<string | null>(null);
     const loginFromToken = token ? (jwtDecode(token) as TokenPayload).login : null;
     const roleFromToken = token ? (jwtDecode(token) as TokenPayload).role : null;
-    console.log(roleFromToken);
-    // useEffect(() => {if (roleFromToken !== 'farmer')
-    //     throw new Error('You are not registered as farmer. Operation is forbidden');},[token, loginFromToken]);
+    const baseURL = import.meta.env.VITE_API_URL;
 
     const handleDelete = async () => {
         try {
@@ -33,7 +31,7 @@ const DeleteFarmer = () => {
             setSuccess(null);
             if (roleFromToken !== 'farmer')
                 throw new Error('You are not registered as farmer. Operation is forbidden');
-            const response = await fetch('http://localhost:8080/apifarm/removeFarmer', {
+            const response = await fetch(`${baseURL}/apifarm/removeFarmer`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

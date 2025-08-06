@@ -19,14 +19,14 @@ const DeleteClient = () => {
     const navigate = useNavigate();
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
-
+    const baseURL = import.meta.env.VITE_API_URL;
     const loginFromToken = token ? (jwtDecode(token) as TokenPayload).login : null;
     const roleFromToken = token ? (jwtDecode(token) as TokenPayload).role : null;
     const handleDelete = async () => {
         try {
             setError(null);
             setSuccess(null);
-            const response = await fetch('http://localhost:8080/apifarm/deleteClient', {
+            const response = await fetch(`${baseURL}/apifarm/deleteClient`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

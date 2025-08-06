@@ -20,7 +20,7 @@ const UpdateFarmer = () => {
     const [success, setSuccess] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
-
+    const baseURL = import.meta.env.VITE_API_URL;
     const loginFromToken = token ? (jwtDecode(token) as TokenPayload).login : null;
     const roleFromToken = token ? (jwtDecode(token) as TokenPayload).role : null;
     useEffect(() => {
@@ -29,7 +29,7 @@ const UpdateFarmer = () => {
                 setLoading(true);
                 if (roleFromToken !== 'farmer')
                     throw new Error('You are not registered as farmer. Operation is forbidden');
-                const response = await fetch(`http://localhost:8080/apifarm/infFarmerByLogin/${loginFromToken}`, {
+                const response = await fetch(`${baseURL}/apifarm/infFarmerByLogin/${loginFromToken}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     },
@@ -65,7 +65,7 @@ const UpdateFarmer = () => {
             setError(null);
             setSuccess(null);
 
-            const response = await fetch('http://localhost:8080/apifarm/updateFarmer', {
+            const response = await fetch(`${baseURL}/apifarm/updateFarmer`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

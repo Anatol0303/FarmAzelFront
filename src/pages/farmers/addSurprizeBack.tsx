@@ -19,11 +19,12 @@ const AddSurprizeBack = () => {
     const [success, setSuccess] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     const roleFromToken = token ? (jwtDecode(token) as TokenPayload).role : null;
+    const baseURL = import.meta.env.VITE_API_URL;
     const handleAddSurprizeBack = async () => {
         try {
             setError(null);
             setSuccess(null);
-            const response = await fetch('http://localhost:8080/apifarm/addSurprizeBack', {
+            const response = await fetch(`${baseURL}/apifarm/addSurprizeBack`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

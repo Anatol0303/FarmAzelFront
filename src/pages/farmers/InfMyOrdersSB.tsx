@@ -27,12 +27,13 @@ const InfMyOrdersSB = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [myOrderedBacks, setMyOrderedBacks] = useState<SurprizeBackTo[] | null>([]);
     const roleFromToken = token ? (jwtDecode(token) as TokenPayload).role : null;
+    const baseURL = import.meta.env.VITE_API_URL;
         const GetOrderedSurprizeBacks = async () => {
             try {
                 setError(null);
                 setSuccess(null);
                 setLoading(true);
-                const response = await fetch(`http://localhost:8080/apifarm/InfOrdersSB`, {
+                const response = await fetch(`${baseURL}/apifarm/InfOrdersSB`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

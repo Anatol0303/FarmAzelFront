@@ -16,12 +16,13 @@ const UpdateFarmerPassword = () => {
     const [error, setError] = useState<string | null>(null);
     const loginFromToken = token ? (jwtDecode(token) as TokenPayload).login : null;
     const roleFromToken = token ? (jwtDecode(token) as TokenPayload).role : null;
+    const baseURL = import.meta.env.VITE_API_URL;
     const handleUpdate = async () => {
         try {
             setError(null);
             setSuccess(null);
             const password = newPassword;
-            const response = await fetch('http://localhost:8080/apifarm/updateFarmerPassword', {
+            const response = await fetch(`${baseURL}/apifarm/updateFarmerPassword`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
