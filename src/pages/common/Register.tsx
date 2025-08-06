@@ -10,6 +10,7 @@ const Register = () => {
     const role = useSelector((state: RootState) => state.role.role);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const baseURL = import.meta.env.VITE_API_URL;
 
     const [formData, setFormData] = useState({
         login: '',
@@ -38,8 +39,8 @@ const Register = () => {
         setError(null);
 
         const url = role === 'farmer'
-            ? 'http://localhost:8080/apifarm/registerFarmer'
-            : 'http://localhost:8080/apifarm/registerClient';
+            ? `${baseURL}/apifarm/registerFarmer`
+            : `${baseURL}/apifarm/registerClient`;
 
         const { login, password, firstName, lastName, address, phone,mail, postCode } = formData;
         const payload =
